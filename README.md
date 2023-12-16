@@ -24,3 +24,41 @@ your score is 3
 | 11 | A C | BCCDABABBB | 8 |  | BCCDABC | 9 | 結果 = 期待値なので残った選択肢を採用、期待値+1 |
 | 12 | A | BCCDABCABB | 8 |  | BCCDABCA | 9 | 結果 > 期待値なので使った選択肢を採用、期待値+1 |
 | 13 | A | BCCDABCBAB | 10 |  |  |  |
+
+```mermaid
+flowchart TB
+
+start(( ))
+subgraph init [" "]
+direction TB
+	A1("AAAAAAAAAA を試す")
+	A2("BBBBBBBBBB を試す")
+	A3("CCCCCCCCCC を試す")
+end
+E("期待値")
+P[("BBB CC D")]
+subgraph Ai["i番目の調査"]
+direction TB
+	istart(( ))
+	O1("一番多く残っている選択肢を試す")
+	O2("試した選択肢を採用")
+	next("次を探索")
+	O4[/"残っている選択肢は1種類?"/]
+  O5("残っていた選択肢を採用")
+	saiyou(( ))
+end
+
+start --> init
+init -->|"一番多い選択肢をベースとして調査"| Ai
+init -->|"残りの選択肢"| P
+P ===|"10 - 残りの選択肢数"| E
+
+istart --> O1 -->|"期待値 < 正解数"| O2 --> saiyou
+saiyou --> next
+O1 -->|"期待値 > 正解数"| next --> istart
+O1 -->|"期待値 = 正解数"| O4 -->|yes| O5 --> saiyou
+O4 -->|no| O1
+
+saiyou --> |"採用した選択肢を減らす"| P
+Ai -.->|参照| E
+```
