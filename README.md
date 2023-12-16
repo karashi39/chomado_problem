@@ -1,5 +1,44 @@
 # README.md
 
+## usage
+```
+python main.py
+AAAAAAAAAA
+your score is 2
+BBBBBBBBBB
+your score is 4
+CCCCCCCCCC
+your score is 2
+ABBBBBBBBB
+your score is 5
+ACBBBBBBBB
+your score is 4
+ABCBBBBBBB
+your score is 5
+ABDBBBBBBB
+your score is 6
+ABDCBBBBBB
+your score is 5
+ABDBCBBBBB
+your score is 5
+ABDBBCBBBB
+your score is 6
+ABDBBABBBB
+your score is 7
+ABDBBACBBB
+your score is 8
+ABDBBACCBB
+your score is 7
+ABDBBACBCD
+your score is 8
+ABDBBACBDC
+You passed the test on your 15 challenge!
+```
+
+
+
+## hint
+
 ```
 AAAAAAAAAA
 your score is 2
