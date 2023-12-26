@@ -1,8 +1,5 @@
 import random
-import sys
 
-Q_NUM = 10
-OPT = ["A", "B", "C", "D"]
 
 class Question:
     q_num = 10
@@ -25,7 +22,7 @@ class Question:
         return score
 
     def set_passed(self, score: int) -> None:
-        self.passed = (self.q_num == score)
+        self.passed = self.q_num == score
         if self.passed:
             print(f"You passed the test on your {self.challenge_cnt} challenge!")
 
@@ -35,7 +32,7 @@ class Question:
         if len(ans) != self.q_num:
             return False
         for a in ans:
-            if not a in self.opt:
+            if a not in self.opt:
                 return False
         return True
 
@@ -47,10 +44,10 @@ def main() -> None:
     question = Question()
     try:
         while not question.passed:
-            score = question.answer()
+            question.answer()
     except KeyboardInterrupt:
         print(f"\ncorrect answer is {''.join(question.ans)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
