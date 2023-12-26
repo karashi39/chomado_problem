@@ -10,7 +10,7 @@ class Question:
     def __init__(self) -> None:
         self.ans = [self.opt[random.randint(0, 3)] for i in range(self.q_num)]
 
-    def answer(self) -> list:
+    def answer(self) -> int:
         ans = list(input().replace(" ", ""))
         while not self.validate_ans(ans):
             print("your answers are not valid")
