@@ -2,7 +2,7 @@
 
 ## usage
 ```
-python main.py
+$ make run
 AAAAAAAAAA
 your score is 2
 BBBBBBBBBB
@@ -35,6 +35,8 @@ ABDBBACBDC
 You passed the test on your 15 challenge!
 ```
 
+quit with Ctrl + C
+then correct answer will appear
 
 
 ## hint
