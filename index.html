@@ -1,0 +1,147 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        const ANSWER_LENGTH=10;
+        function rand_ans () {
+            const letters = ['A', 'B', 'C', 'D'];
+            const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+            return randomLetter;
+        }
+        function countScore(correct_answer, user_answer) {
+            var score = 0;
+            for (var i = 0; i < correct_answer.length; i++) {
+                if (correct_answer[i] === user_answer[i]) score++;
+            }
+            return score;
+        }
+        function challengeCntMsg(retry_cnt) {
+            if (retry_cnt === 1) {
+                return "1st";
+            } else if (retry_cnt === 2) {
+                return "2nd";
+            } else {
+                return `${retry_cnt}th`;
+            }
+        }
+        $(document).ready(function () {
+            //init
+            $('#result').hide();
+            var retry_cnt = 0;
+            var correct_answer = "";
+            for (var i = 0; i < ANSWER_LENGTH; i++) {
+                correct_answer += rand_ans();
+            }
+
+            //when answer submit
+            $('#submit').click(function() {
+                var user_answer = "";
+                for (var i=0; i < ANSWER_LENGTH; i++) {
+                    user_answer += $(`input[name='a${i}']:checked`).val();
+                }
+                user_score = countScore(correct_answer, user_answer);
+                if (user_score === ANSWER_LENGTH) {
+                    $('#result').text(`You got all the questions correct in ${retry_cnt} retries!`);
+                    $('#result').show();
+                } else {
+                    retry_cnt ++;
+                    $('#retry_cnt').text(challengeCntMsg(retry_cnt));
+                    $('#user_score').text(user_score);
+                    $('#user_answer').text(user_answer);
+                    $('#result').show();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Examination</h1>
+    <hr>
+    <ul>
+        <li>Pass by asnwering all questions correctly.
+        <li>If the answer is incorrect, only the score will be displayed.
+    </ul>
+    <hr>
+    <div>
+        Q0.
+        <input type="radio" id="a0A" name="a0" value="A" checked/>A
+        <input type="radio" id="a0B" name="a0" value="B" />B
+        <input type="radio" id="a0C" name="a0" value="C" />C
+        <input type="radio" id="a0D" name="a0" value="D" />D
+    </div>
+    <div>
+        Q1.
+        <input type="radio" id="a1A" name="a1" value="A" checked/>A
+        <input type="radio" id="a1B" name="a1" value="B" />B
+        <input type="radio" id="a1C" name="a1" value="C" />C
+        <input type="radio" id="a1D" name="a1" value="D" />D
+    </div>
+    <div>
+        Q2.
+        <input type="radio" id="a2A" name="a2" value="A" checked/>A
+        <input type="radio" id="a2B" name="a2" value="B" />B
+        <input type="radio" id="a2C" name="a2" value="C" />C
+        <input type="radio" id="a2D" name="a2" value="D" />D
+    </div>
+    <div>
+        Q3.
+        <input type="radio" id="a3A" name="a3" value="A" checked/>A
+        <input type="radio" id="a3B" name="a3" value="B" />B
+        <input type="radio" id="a3C" name="a3" value="C" />C
+        <input type="radio" id="a3D" name="a3" value="D" />D
+    </div>
+    <div>
+        Q4.
+        <input type="radio" id="a4A" name="a4" value="A" checked/>A
+        <input type="radio" id="a4B" name="a4" value="B" />B
+        <input type="radio" id="a4C" name="a4" value="C" />C
+        <input type="radio" id="a4D" name="a4" value="D" />D
+    </div>
+    <div>
+        Q5.
+        <input type="radio" id="a5A" name="a5" value="A" checked/>A
+        <input type="radio" id="a5B" name="a5" value="B" />B
+        <input type="radio" id="a5C" name="a5" value="C" />C
+        <input type="radio" id="a5D" name="a5" value="D" />D
+    </div>
+    <div>
+        Q6.
+        <input type="radio" id="a6A" name="a6" value="A" checked/>A
+        <input type="radio" id="a6B" name="a6" value="B" />B
+        <input type="radio" id="a6C" name="a6" value="C" />C
+        <input type="radio" id="a6D" name="a6" value="D" />D
+    </div>
+    <div>
+        Q7.
+        <input type="radio" id="a7A" name="a7" value="A" checked/>A
+        <input type="radio" id="a7B" name="a7" value="B" />B
+        <input type="radio" id="a7C" name="a7" value="C" />C
+        <input type="radio" id="a7D" name="a7" value="D" />D
+    </div>
+    <div>
+        Q8. 
+        <input type="radio" id="a8A" name="a8" value="A" checked/>A
+        <input type="radio" id="a8B" name="a8" value="B" />B
+        <input type="radio" id="a8C" name="a8" value="C" />C
+        <input type="radio" id="a8D" name="a8" value="D" />D
+    </div>
+    <div>
+        Q9.
+        <input type="radio" id="a9A" name="a9" value="A" checked/>A
+        <input type="radio" id="a9B" name="a9" value="B" />B
+        <input type="radio" id="a9C" name="a9" value="C" />C
+        <input type="radio" id="a9D" name="a9" value="D" />D
+    </div>
+    <div>
+        <button id="submit">Submit your answers</button>
+    </div>
+    <div id="result">
+        <hr>
+        <div>your <span id="retry_cnt">1st</span> retry now.</div>
+        <div>your last score is <span id="user_score">0</span></div>
+        <div>your last answer is <span id="user_answer">AAAAAAAAAA</span></div>
+    </div>
+    <hr>
+    <textarea id="memo" name="memo" rows="3" cols="30" placeholder="your note"></textarea>
+</body>
+</html>
