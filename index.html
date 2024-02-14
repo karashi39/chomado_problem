@@ -15,19 +15,19 @@
             }
             return score;
         }
-        function challengeCntMsg(retry_cnt) {
-            if (retry_cnt === 1) {
+        function challengeCntMsg(challenge_cnt) {
+            if (challenge_cnt === 1) {
                 return "1st";
-            } else if (retry_cnt === 2) {
+            } else if (challenge_cnt === 2) {
                 return "2nd";
             } else {
-                return `${retry_cnt}th`;
+                return `${challenge_cnt}th`;
             }
         }
         $(document).ready(function () {
             //init
             $('#result').hide();
-            var retry_cnt = 0;
+            var challenge_cnt = 1;
             var correct_answer = "";
             for (var i = 0; i < ANSWER_LENGTH; i++) {
                 correct_answer += rand_ans();
@@ -41,11 +41,11 @@
                 }
                 user_score = countScore(correct_answer, user_answer);
                 if (user_score === ANSWER_LENGTH) {
-                    $('#result').text(`You got all the questions correct in ${retry_cnt} retries!`);
+                    $('#result').text(`You got all the questions correct in ${challenge_cnt} retries!`);
                     $('#result').show();
                 } else {
-                    retry_cnt ++;
-                    $('#retry_cnt').text(challengeCntMsg(retry_cnt));
+                    challenge_cnt ++;
+                    $('#challenge_cnt').text(challengeCntMsg(challenge_cnt));
                     $('#user_score').text(user_score);
                     $('#user_answer').text(user_answer);
                     $('#result').show();
@@ -62,6 +62,7 @@
         <li>If the answer is incorrect, only the score will be displayed.
     </ul>
     <hr>
+    <div>your <span id="challenge_cnt">1st</span> challenge now.</div>
     <div>
         Q0.
         <input type="radio" id="a0A" name="a0" value="A" checked/>A
@@ -137,7 +138,6 @@
     </div>
     <div id="result">
         <hr>
-        <div>your <span id="retry_cnt">1st</span> retry now.</div>
         <div>your last score is <span id="user_score">0</span></div>
         <div>your last answer is <span id="user_answer">AAAAAAAAAA</span></div>
     </div>
